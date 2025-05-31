@@ -18,7 +18,14 @@ public class IntroActivity extends BaseActivity {
         binding.introBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(IntroActivity.this, MainActivity.class));
+                startActivity(new Intent(IntroActivity.this, SignupActivity.class));
+            }
+        });
+
+        binding.loginBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(IntroActivity.this, LoginActivity.class));
             }
         });
 

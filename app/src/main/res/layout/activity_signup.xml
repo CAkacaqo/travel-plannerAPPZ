@@ -3,19 +3,34 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent" android:padding="24dp">
 
+
     <EditText
         android:id="@+id/emailInput"
+        android:layout_width="396dp"
+        android:layout_height="79dp"
         android:hint="Email"
-        android:inputType="textEmailAddress"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:inputType="textEmailAddress" />
 
     <EditText
         android:id="@+id/passwordInput"
         android:hint="Password"
         android:inputType="textPassword"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_width="396dp"
+        android:layout_height="79dp" />
+
+    <EditText
+        android:id="@+id/nameInput"
+        android:hint="Full Name"
+        android:inputType="textPersonName"
+        android:layout_width="396dp"
+        android:layout_height="79dp"/>
+
+    <EditText
+        android:id="@+id/ageInput"
+        android:hint="Age"
+        android:inputType="number"
+        android:layout_width="396dp"
+        android:layout_height="79dp" />
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -28,13 +43,14 @@
         android:id="@+id/signupBtn"
         android:text="Sign Up"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"/>
     <TextView
         android:id="@+id/loginLink"
         android:text="Already have an account? Login"
         android:textColor="@android:color/holo_blue_dark"
         android:gravity="center"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        />
 </LinearLayout>

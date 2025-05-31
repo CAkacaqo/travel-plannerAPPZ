@@ -7,11 +7,14 @@ import android.view.View;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.uilover.project2152.databinding.ActivityLoginBinding;
 
 public class LoginActivity extends BaseActivity {
     ActivityLoginBinding binding;
     FirebaseAuth mAuth;
+    FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +23,7 @@ public class LoginActivity extends BaseActivity {
         setContentView(binding.getRoot());
 
         mAuth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
 
         binding.loginBtn.setOnClickListener(v -> {
             String email = binding.emailInput.getText().toString().trim();
@@ -34,9 +38,27 @@ public class LoginActivity extends BaseActivity {
 
             mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
                 binding.progressBar.setVisibility(View.GONE);
+
                 if (task.isSuccessful()) {
-                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                    finish();
+                    FirebaseUser user = mAuth.getCurrentUser();
+                    if (user != null) {
+                        String uid = user.getUid();
+
+                        // Now check if user document exists in Firestore
+                        db.collection("users").document(uid).get()
+                                .addOnSuccessListener(documentSnapshot -> {
+                                    if (documentSnapshot.exists()) {
+                                        Toast.makeText(this, "Login successful", Toast.LENGTH_SHORT).show();
+                                        startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                                        finish();
+                                    } else {
+                                        Toast.makeText(this, "User not found in database", Toast.LENGTH_SHORT).show();
+                                    }
+                                })
+                                .addOnFailureListener(e -> {
+                                    Toast.makeText(this, "Firestore error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                });
+                    }
                 } else {
                     Toast.makeText(this, "Login failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                 }

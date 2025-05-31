@@ -5,17 +5,17 @@
 
     <EditText
         android:id="@+id/emailInput"
+        android:layout_width="396dp"
+        android:layout_height="79dp"
         android:hint="Email"
-        android:inputType="textEmailAddress"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:inputType="textEmailAddress" />
 
     <EditText
         android:id="@+id/passwordInput"
+        android:layout_width="396dp"
+        android:layout_height="79dp"
         android:hint="Password"
-        android:inputType="textPassword"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:inputType="textPassword" />
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -28,13 +28,15 @@
         android:id="@+id/loginBtn"
         android:text="Login"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"/>
 
     <TextView
         android:id="@+id/signupLink"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
         android:text="Don't have an account? Sign up"
         android:textColor="@android:color/holo_blue_dark"
-        android:gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        />
 </LinearLayout>
