@@ -25,7 +25,6 @@ public class MainActivity extends BaseActivity {
     ActivityMainBinding binding;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
